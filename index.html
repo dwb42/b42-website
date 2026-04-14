@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>B42</title>
+  <meta name="description" content="">
+  <meta name="color-scheme" content="light">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="screen">
+      <div class="column">
+        <p>Jeder braucht Hilfe.</p>
+        <p>Keine Information.<br>Keine Tools.</p>
+        <p>Hilfe.</p>
+      </div>
+    </section>
+
+    <section class="screen">
+      <div class="column">
+        <p>Die Welt wird immer komplexer.</p>
+        <p>
+          Mehr Regeln.<br>
+          Mehr Systeme.<br>
+          Mehr Verantwortung,<br>die auf Einzelne abgewälzt wird.
+        </p>
+        <p>Menschen werden allein gelassen,<br>damit zurechtzukommen.</p>
+      </div>
+    </section>
+
+    <section class="screen">
+      <div class="column">
+        <p>Was Menschen wirklich wollen,<br>ist einfach:</p>
+        <p>
+          Jemand, der zuhört.<br>
+          Versteht.<br>
+          Die richtigen Fragen stellt.
+        </p>
+        <p>
+          Führt.<br>
+          Dranbleibt.<br>
+          Dinge erledigt.
+        </p>
+        <p>Jemand, dem es nicht egal ist.</p>
+      </div>
+    </section>
+
+    <section class="screen">
+      <div class="column">
+        <p>Das ist es, was wir bauen.</p>
+        <p>Fachexperten in deiner Tasche.</p>
+        <p>
+          Immer auf dem neuesten Stand.<br>
+          Immer da.
+        </p>
+        <p>Hilfe.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>B42 :: AI Venture Hub <span aria-hidden="true">·</span> <button type="button" class="linklike" data-open="impressum">Impressum</button></p>
+  </footer>
+
+  <dialog id="impressum" class="modal" aria-labelledby="impressum-title">
+    <div class="modal-inner">
+      <p id="impressum-title" class="modal-title">Impressum</p>
+
+      <p>
+        B42 GmbH<br>
+        Am Born 6b<br>
+        22765 Hamburg<br>
+        Deutschland
+      </p>
+
+      <p>dw@b42.io</p>
+
+      <p>
+        Vertretungsberechtigter Geschäftsführer<br>
+        D. Wedegaertner
+      </p>
+
+      <p>
+        Registergericht Hamburg<br>
+        HRB 115840
+      </p>
+
+      <p><button type="button" class="linklike" data-close>Schließen</button></p>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('impressum');
+      if (!dlg) return;
+      document.querySelectorAll('[data-open="impressum"]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          if (typeof dlg.showModal === 'function') dlg.showModal();
+          else dlg.setAttribute('open', '');
+        });
+      });
+      dlg.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', function () { dlg.close(); });
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg) dlg.close();
+      });
+    })();
+  </script>
+</body>
+</html>
