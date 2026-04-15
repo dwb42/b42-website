@@ -29,6 +29,15 @@ html {
   background: var(--bg);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -55,6 +64,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   padding:
     max(var(--pad-y), env(safe-area-inset-top))
     max(var(--pad-x), env(safe-area-inset-right))
