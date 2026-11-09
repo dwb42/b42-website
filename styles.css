@@ -89,6 +89,7 @@ main {
 }
 
 footer {
+  scroll-snap-align: end;
   padding:
     clamp(2.25rem, 5vh, 3.5rem)
     max(var(--pad-x), env(safe-area-inset-right))
