@@ -6,7 +6,7 @@
   --pad-x: clamp(1.75rem, 7vw, 7rem);
   --pad-y: clamp(2rem, 6vh, 5rem);
 
-  --type: clamp(1.0625rem, 0.84rem + 1.05vw, 1.6875rem);
+  --type: clamp(1.375rem, 0.84rem + 1.05vw, 1.6875rem);
   --lh: 1.5;
   --tracking: -0.011em;
 
@@ -202,5 +202,10 @@ footer a:focus-visible {
 
 .modal-title {
   margin-bottom: 2em;
+}
+
+@media (max-width: 559px) {
+  footer { font-size: 0.875rem; }
+  .modal { font-size: 1rem; }
 }
 
