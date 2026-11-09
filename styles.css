@@ -204,7 +204,12 @@ footer a:focus-visible {
   margin-bottom: 2em;
 }
 
+.mobile-break {
+  display: none;
+}
+
 @media (max-width: 559px) {
+  .mobile-break { display: inline; }
   footer { font-size: 0.875rem; }
   .modal { font-size: 1rem; }
 }
