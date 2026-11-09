@@ -41,6 +41,7 @@ html {
 }
 
 body {
+  position: relative;
   color: var(--fg);
   background: var(--bg);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -71,6 +72,9 @@ main {
     max(var(--pad-x), env(safe-area-inset-right))
     max(var(--pad-y), env(safe-area-inset-bottom))
     max(var(--pad-x), env(safe-area-inset-left));
+  /* Extra space below places the text center at 35% of the viewport height. */
+  padding-bottom: calc(max(var(--pad-y), env(safe-area-inset-bottom)) + 30vh);
+  padding-bottom: calc(max(var(--pad-y), env(safe-area-inset-bottom)) + 30dvh);
 }
 
 .column {
@@ -89,7 +93,10 @@ main {
 }
 
 footer {
-  scroll-snap-align: end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding:
     clamp(2.25rem, 5vh, 3.5rem)
     max(var(--pad-x), env(safe-area-inset-right))
