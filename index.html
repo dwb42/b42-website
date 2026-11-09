@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
   <title>B42</title>
   <meta name="description" content="B42 unterstützt Unternehmen beim Skalieren mit Software-APIs, entwickelt digitale Produkte und Geschäftsmodelle und investiert mit unternehmerischem Engagement.">
   <link rel="canonical" href="https://b42.io/">
@@ -50,16 +51,25 @@
     <div class="modal-inner">
       <p id="impressum-title" class="modal-title">Impressum</p>
 
-      <p>
-        B42 GmbH<br>
-        Thadenstr. 160a<br>
-        22767 Hamburg
+      <!-- Anchors without href remain plain text and prevent iOS data-detector links. -->
+      <p>B42 GmbH<br><a class="contact-text">Thadenstr. 160a<br>22767 Hamburg</a></p>
+
+      <p class="email-row">
+        <a class="contact-text" id="contact-email">dw@b42.io</a>
+        <button type="button" class="copy-button" aria-label="E-Mail-Adresse kopieren" title="E-Mail-Adresse kopieren">
+          <svg class="copy-symbol" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <rect x="9" y="9" width="11" height="11" rx="2" />
+            <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" />
+          </svg>
+          <svg class="copy-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="m5 12 4 4 10-10" />
+          </svg>
+        </button>
       </p>
-
-      <p>dw@b42.io</p>
+      <p id="copy-status" class="visually-hidden" role="status"></p>
 
       <p>
-        Vertretungsberechtigter Geschäftsführer<br>
+        Geschäftsführer<br>
         Dietrich Wedegärtner
       </p>
 
@@ -68,7 +78,7 @@
         HRB 115840
       </p>
 
-      <p><button type="button" class="linklike" data-close>Schließen</button></p>
+      <p><button type="button" class="linklike" data-close autofocus>schließen</button></p>
     </div>
   </dialog>
 
@@ -76,8 +86,10 @@
     (function () {
       var dlg = document.getElementById('impressum');
       if (!dlg) return;
+      var opener;
       document.querySelectorAll('[data-open="impressum"]').forEach(function (el) {
         el.addEventListener('click', function () {
+          opener = el;
           if (typeof dlg.showModal === 'function') dlg.showModal();
           else dlg.setAttribute('open', '');
         });
@@ -87,6 +99,44 @@
       });
       dlg.addEventListener('click', function (e) {
         if (e.target === dlg) dlg.close();
+      });
+
+      var copyButton = dlg.querySelector('.copy-button');
+      var copyStatus = document.getElementById('copy-status');
+      var copyTimer;
+
+      function resetCopyStatus() {
+        clearTimeout(copyTimer);
+        copyButton.removeAttribute('data-copied');
+        copyButton.title = 'E-Mail-Adresse kopieren';
+        copyStatus.className = 'visually-hidden';
+        copyStatus.textContent = '';
+      }
+
+      function copyFailed() {
+        copyStatus.className = 'copy-status';
+        copyStatus.textContent = 'Kopieren nicht möglich. Bitte die E-Mail-Adresse markieren und kopieren.';
+      }
+
+      copyButton.addEventListener('click', function () {
+        resetCopyStatus();
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+          copyFailed();
+          return;
+        }
+        navigator.clipboard.writeText(document.getElementById('contact-email').textContent.trim()).then(function () {
+          if (!dlg.open) return;
+          copyButton.setAttribute('data-copied', '');
+          copyButton.title = 'E-Mail-Adresse kopiert';
+          copyStatus.textContent = 'E-Mail-Adresse kopiert.';
+          copyTimer = setTimeout(resetCopyStatus, 2000);
+        }).catch(function () {
+          if (dlg.open) copyFailed();
+        });
+      });
+      dlg.addEventListener('close', function () {
+        resetCopyStatus();
+        if (opener) opener.focus({ preventScroll: true });
       });
     })();
   </script>

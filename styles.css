@@ -211,6 +211,61 @@ footer a:focus-visible {
   margin-bottom: 2em;
 }
 
+.contact-text {
+  color: inherit;
+  text-decoration: none;
+}
+
+.email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.625rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.copy-check,
+.copy-button[data-copied] .copy-symbol {
+  display: none;
+}
+
+.copy-button[data-copied] .copy-check {
+  display: block;
+}
+
+.modal .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.copy-status {
+  font-size: 0.875rem;
+}
+
 .mobile-break {
   display: none;
 }
